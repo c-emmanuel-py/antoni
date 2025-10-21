@@ -1,0 +1,26 @@
+# Robots.txt for Grupo Antoni Landing Page
+# https://grupoantoni.com
+
+User-agent: *
+Allow: /
+
+# Disallow access to admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /.vscode/
+Disallow: /dist/
+Disallow: /build/
+
+# Allow access to important files
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://grupoantoni.com/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1

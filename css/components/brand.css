@@ -1,0 +1,214 @@
+/* ========================================
+   BRAND ECOSYSTEM COMPONENT
+   ======================================== */
+
+.brand {
+  height: 100vh;
+  background-color: #ffffff;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-header {
+  margin-bottom: calc(var(--spacing-xxl) * 1.5);
+}
+
+.brand-title {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-bold);
+  color: #000000;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.2;
+  font-family: 'Dancing Script', cursive;
+}
+
+.brand-title .highlight {
+  color: #4A90E2;
+  font-weight: var(--font-weight-bold);
+  font-family: 'Inter', sans-serif;
+}
+
+.brand-separator {
+  width: 200px;
+  height: 3px;
+  background-color: #4A90E2;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.brand-carousel-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.brand-carousel {
+  display: flex;
+  animation: scroll 20s linear infinite;
+  gap: var(--spacing-xxl);
+  width: max-content;
+  padding: 0 var(--spacing-lg);
+  cursor: grab;
+  user-select: none;
+}
+
+.brand-carousel:active {
+  cursor: grabbing;
+}
+
+.brand-carousel:hover {
+  animation-play-state: paused;
+}
+
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.brand-logo {
+  flex: 0 0 auto;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all var(--transition-normal);
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+}
+
+.brand-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  transition: all var(--transition-normal);
+}
+
+.brand-link:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.brand-logo:hover .brand-link {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.brand-logo .logo-img {
+  width: 320px;
+  height: 320px;
+  object-fit: contain;
+  margin-bottom: var(--spacing-md);
+  transition: all var(--transition-normal);
+}
+
+.brand-logo:hover .logo-img {
+  transform: scale(1.05);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.logo-main {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: #000000;
+  font-family: 'Dancing Script', cursive;
+  line-height: 1;
+}
+
+.logo-sub {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+  .brand-carousel {
+    gap: var(--spacing-xl);
+  }
+
+  .brand-logo {
+    width: 240px;
+  }
+
+  .brand-title {
+    font-size: var(--font-size-5xl);
+  }
+
+  .brand-separator {
+    width: 150px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .brand {
+    padding: var(--spacing-xxl) 0;
+  }
+
+  .brand-carousel {
+    gap: var(--spacing-lg);
+    padding: 0 var(--spacing-md);
+  }
+
+  .brand-logo {
+    width: 200px;
+  }
+
+  .brand-title {
+    font-size: var(--font-size-4xl);
+  }
+
+  .brand-separator {
+    width: 120px;
+  }
+
+  .brand-logo .logo-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .logo-main {
+    font-size: var(--font-size-xl);
+  }
+
+  .logo-sub {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .brand {
+    background-color: #ffffff;
+  }
+
+  .brand-title,
+  .logo-main,
+  .logo-sub {
+    color: #000000;
+  }
+}

@@ -1,0 +1,139 @@
+/* ========================================
+   QUOTE SECTION COMPONENT
+   ======================================== */
+
+.quote-section {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #f8f9fa;
+}
+
+.quote-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.quote-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.quote-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 100%);
+  z-index: 2;
+}
+
+.quote-content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  padding: var(--spacing-xxl) var(--spacing-xl);
+  text-align: center;
+  color: #ffffff !important;
+}
+
+.quote-text {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+  font-style: italic;
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.quote-author {
+  display: block;
+  margin-top: var(--spacing-lg);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  font-style: normal;
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+  .quote-section {
+    height: 50vh;
+    min-height: 350px;
+  }
+
+  .quote-content {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+
+  .quote-text {
+    font-size: var(--font-size-2xl);
+  }
+
+  .quote-author {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .quote-section {
+    height: 40vh;
+    min-height: 300px;
+  }
+
+  .quote-content {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .quote-text {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-normal);
+  }
+
+  .quote-author {
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-md);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .quote-section {
+    height: auto;
+    background: none;
+    color: rgb(0, 0, 0);
+  }
+
+  .quote-background {
+    display: none;
+  }
+
+  .quote-overlay {
+    display: none;
+  }
+
+  .quote-text {
+    color: black !important;
+    text-shadow: none;
+  }
+
+  .quote-author {
+    color: black !important;
+    text-shadow: none;
+  }
+}
