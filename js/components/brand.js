@@ -83,7 +83,7 @@ export class Brand {
     e.preventDefault();
   }
 
-  endDrag(e) {
+  endDrag(_e) {
     if (!this.isDragging) {
       return;
     }

@@ -80,6 +80,7 @@ npm run optimize:images # Optimizar imágenes con imagemin
 ## 🎯 Optimizaciones Implementadas
 
 ### **Performance**
+
 - **Code Splitting**: Chunks separados por funcionalidad
 - **Image Optimization**: Reducción del 99.9% en tamaño de imágenes
 - **Lazy Loading**: Carga diferida de imágenes y componentes
@@ -87,12 +88,14 @@ npm run optimize:images # Optimizar imágenes con imagemin
 - **Tree Shaking**: Eliminación de código no utilizado
 
 ### **SEO**
+
 - **Meta Tags**: Open Graph, Twitter Cards, keywords
 - **Estructura Semántica**: HTML5 semántico
 - **Canonical URLs**: URLs canónicas
 - **Sitemap**: Estructura optimizada para crawlers
 
 ### **Accesibilidad**
+
 - **ARIA Labels**: Etiquetas descriptivas
 - **Keyboard Navigation**: Navegación por teclado
 - **Screen Readers**: Compatibilidad con lectores de pantalla
@@ -102,17 +105,20 @@ npm run optimize:images # Optimizar imágenes con imagemin
 ## 🔧 Configuración de Calidad
 
 ### **ESLint**
+
 - Configuración Airbnb Base
 - Reglas personalizadas para el proyecto
 - Integración con Prettier
 - Pre-commit hooks con Husky
 
 ### **Prettier**
+
 - Formato consistente
 - Integración con ESLint
 - Configuración para HTML, CSS, JS
 
 ### **Husky**
+
 - Pre-commit hooks
 - Lint-staged para archivos modificados
 - Prevención de commits con errores
@@ -124,6 +130,7 @@ npm run analyze
 ```
 
 Genera un reporte visual en `dist/bundle-analysis.html` con:
+
 - Tamaño de chunks
 - Dependencias
 - Análisis de duplicación
@@ -132,11 +139,13 @@ Genera un reporte visual en `dist/bundle-analysis.html` con:
 ## 🚀 Deployment
 
 ### **Build de Producción**
+
 ```bash
 npm run build
 ```
 
 ### **Optimizaciones Aplicadas**
+
 - Sourcemaps deshabilitados en producción
 - Console logs eliminados
 - Imágenes optimizadas
@@ -144,6 +153,7 @@ npm run build
 - Assets con hash para cache busting
 
 ### **Estructura de Build**
+
 ```
 dist/
 ├── css/           # CSS minificado con hash
@@ -170,16 +180,19 @@ dist/
 ## 🎨 Sistema de Diseño
 
 ### **Colores**
+
 - Primary: #4F8CE3 (Azul corporativo)
 - Secondary: #1a1a1a (Negro)
 - Accent: #25d366 (Verde WhatsApp)
 
 ### **Tipografía**
+
 - Headings: Georgia, serif
 - Body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
 - Sizes: Escala modular responsive
 
 ### **Espaciado**
+
 - Base: 1rem
 - Scale: 0.5rem, 1rem, 1.5rem, 2rem, 3rem, 4rem
 
@@ -192,6 +205,7 @@ dist/
 5. Abre un Pull Request
 
 ### **Estándares de Código**
+
 - Seguir las reglas de ESLint
 - Formatear con Prettier
 - Commits con Conventional Commits
@@ -204,6 +218,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 ## 📞 Contacto
 
 **Grupo Antoni**
+
 - Website: [grupoantoni.com](https://grupoantoni.com)
 - Email: info@grupoantoni.com
 - Teléfono: +1 (829) 893-0121
@@ -211,4 +226,4 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ---
 
-*Desarrollado con ❤️ para Grupo Antoni*
+_Desarrollado con ❤️ para Grupo Antoni_

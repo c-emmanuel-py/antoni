@@ -155,6 +155,7 @@ export class Performance {
   }
 
   trackInteraction(type, element) {
+    // Track interaction for analytics
     const interaction = {
       type,
       timestamp: Date.now(),
@@ -162,6 +163,9 @@ export class Performance {
       id: element ? element.id : null,
       className: element ? element.className : null
     };
+
+    // Store interaction data
+    this.interactions.push(interaction);
 
     // Store interaction for analytics
     if (typeof gtag !== 'undefined') {
@@ -258,8 +262,11 @@ export class Performance {
       userAgent: navigator.userAgent,
       connection: navigator.connection
         ? {
+            // eslint-disable-next-line indent
             effectiveType: navigator.connection.effectiveType,
+            // eslint-disable-next-line indent
             downlink: navigator.connection.downlink,
+            // eslint-disable-next-line indent
             rtt: navigator.connection.rtt
           }
         : null

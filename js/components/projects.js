@@ -250,7 +250,9 @@ export class Projects {
         image: '/img/condominio.png',
         imageAlt: 'Romana Condos - Modern residential complex with ocean views',
         description: `
-          <p>Luxury residential complex featuring modern amenities and stunning ocean views. This project showcases our expertise in high-end residential development with a focus on sustainable design and premium finishes.</p>
+          <p>Luxury residential complex featuring modern amenities and stunning ocean views. 
+          This project showcases our expertise in high-end residential development with a focus on 
+          sustainable design and premium finishes.</p>
           <ul>
             <li>50 luxury condominiums</li>
             <li>Oceanfront location with private beach access</li>
@@ -266,7 +268,9 @@ export class Projects {
         image: '/img/patioOP.png',
         imageAlt: 'Mountain Bungalows - Sustainable mountain retreat with panoramic views',
         description: `
-          <p>Eco-friendly mountain retreat designed for sustainable living and relaxation. This project demonstrates our commitment to environmental responsibility while creating beautiful, functional spaces.</p>
+          <p>Eco-friendly mountain retreat designed for sustainable living and relaxation. 
+          This project demonstrates our commitment to environmental responsibility while creating 
+          beautiful, functional spaces.</p>
           <ul>
             <li>12 sustainable bungalows</li>
             <li>Panoramic mountain views</li>
@@ -282,7 +286,9 @@ export class Projects {
         image: '/img/villa.png',
         imageAlt: 'Antoni Village - Exclusive residential community with luxury amenities',
         description: `
-          <p>Exclusive residential community featuring luxury villas and world-class amenities. This master-planned development represents the pinnacle of luxury living in the Dominican Republic.</p>
+          <p>Exclusive residential community featuring luxury villas and world-class amenities. 
+          This master-planned development represents the pinnacle of luxury living in the 
+          Dominican Republic.</p>
           <ul>
             <li>25 luxury villas</li>
             <li>Golf course and country club</li>
@@ -298,7 +304,9 @@ export class Projects {
         image: '/img/patio.png',
         imageAlt: 'Private Residence - Custom luxury home with contemporary design',
         description: `
-          <p>Custom luxury residence showcasing contemporary design and premium finishes. This private home represents our ability to create unique, personalized spaces that reflect our clients' vision.</p>
+          <p>Custom luxury residence showcasing contemporary design and premium finishes. 
+          This private home represents our ability to create unique, personalized spaces that 
+          reflect our clients' vision.</p>
           <ul>
             <li>Custom architectural design</li>
             <li>Premium materials and finishes</li>
@@ -402,13 +410,15 @@ export class Projects {
     card.className = 'project-card';
     card.innerHTML = `
       <div class="project-image">
-        <img src="${projectData.image}" alt="${projectData.imageAlt}" loading="lazy" width="400" height="300">
+        <img src="${projectData.image}" alt="${projectData.imageAlt}" 
+             loading="lazy" width="400" height="300">
       </div>
       <div class="project-content">
         <h3 class="project-title">${projectData.title}</h3>
         <p class="project-location">${projectData.location}</p>
         <p class="project-description">${projectData.description}</p>
-        <button class="btn btn-outline project-learn-more" data-modal="${projectData.id}">Learn more →</button>
+        <button class="btn btn-outline project-learn-more" 
+                data-modal="${projectData.id}">Learn more →</button>
       </div>
     `;
 

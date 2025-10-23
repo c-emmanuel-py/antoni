@@ -108,7 +108,6 @@ export class Navbar {
 
   updateActiveLink() {
     const { scrollY } = window;
-    const windowHeight = window.innerHeight;
 
     this.sections.forEach(section => {
       const sectionTop = section.offsetTop - 100;

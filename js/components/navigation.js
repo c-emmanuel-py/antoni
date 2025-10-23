@@ -73,7 +73,6 @@ export class Navigation {
 
     const updateActiveLink = () => {
       const { scrollY } = window;
-      const windowHeight = window.innerHeight;
 
       sections.forEach(section => {
         const sectionTop = section.offsetTop - 100;

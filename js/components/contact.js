@@ -291,7 +291,7 @@ This message was sent from the Antoni website contact form.
     }
   }
 
-  handleWhatsAppClick(e) {
+  handleWhatsAppClick(_e) {
     // Track WhatsApp click
     if (window.gtag) {
       window.gtag('event', 'click', {

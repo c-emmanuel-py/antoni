@@ -275,7 +275,7 @@ export class ScrollAnimations {
   /**
    * Create sequence animation for multiple elements
    */
-  sequenceAnimation(elements, animationType = 'fade-up', sequenceDelay = 200) {
+  sequenceAnimation(elements, _animationType = 'fade-up', sequenceDelay = 200) {
     elements.forEach((element, index) => {
       setTimeout(() => {
         this.animateNow(element);

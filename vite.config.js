@@ -37,19 +37,19 @@ export default defineConfig(({ mode }) => ({
             './js/components/contact.js',
             './js/components/services.js'
           ],
-          'utils': [
+          utils: [
             './js/utils/analytics.js',
             './js/utils/performance.js',
             './js/utils/scroll-animations.js'
           ]
         },
-        chunkFileNames: (chunkInfo) => {
+        chunkFileNames: chunkInfo => {
           const facadeModuleId = chunkInfo.facadeModuleId
             ? chunkInfo.facadeModuleId.split('/').pop().replace('.js', '')
             : 'chunk';
           return `js/${facadeModuleId}-[hash].js`;
         },
-        assetFileNames: (assetInfo) => {
+        assetFileNames: assetInfo => {
           const info = assetInfo.name.split('.');
           const ext = info[info.length - 1];
           if (/\.(css)$/.test(assetInfo.name)) {
@@ -82,7 +82,9 @@ export default defineConfig(({ mode }) => ({
     devSourcemap: true,
     postcss: {
       plugins: [
+        // eslint-disable-next-line global-require
         require('autoprefixer'),
+        // eslint-disable-next-line global-require
         require('cssnano')({
           preset: 'default'
         })
@@ -95,11 +97,11 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     mode === 'analyze' &&
-    visualizer({
-      filename: 'dist/bundle-analysis.html',
-      open: true,
-      gzipSize: true,
-      brotliSize: true
-    })
+      visualizer({
+        filename: 'dist/bundle-analysis.html',
+        open: true,
+        gzipSize: true,
+        brotliSize: true
+      })
   ].filter(Boolean)
 }));
