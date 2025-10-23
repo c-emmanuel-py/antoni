@@ -6,7 +6,7 @@ export class Services {
   constructor() {
     this.services = document.getElementById('services');
     this.serviceItems = document.querySelectorAll('.service-item');
-    
+
     this.init();
   }
 
@@ -30,19 +30,24 @@ export class Services {
   }
 
   initAnimations() {
-    if (!this.services) return;
+    if (!this.services) {
+      return;
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.animateItems();
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.animateItems();
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
 
     observer.observe(this.services);
   }
@@ -83,10 +88,10 @@ export class Services {
     // Handle service item click
     const title = item.querySelector('.service-title')?.textContent;
     const description = item.querySelector('.service-description')?.textContent;
-    
+
     // You can add custom logic here, like opening a modal or navigating to a detailed page
     console.log('Service clicked:', { title, description });
-    
+
     // Add click animation
     item.style.transform = 'scale(0.98)';
     setTimeout(() => {
@@ -107,7 +112,9 @@ export class Services {
    */
   updateServiceItem(itemIndex, newContent) {
     const item = this.serviceItems[itemIndex];
-    if (!item) return;
+    if (!item) {
+      return;
+    }
 
     const title = item.querySelector('.service-title');
     const description = item.querySelector('.service-description');
@@ -126,7 +133,9 @@ export class Services {
    */
   addServiceItem(serviceData) {
     const servicesGrid = document.querySelector('.services-grid');
-    if (!servicesGrid) return;
+    if (!servicesGrid) {
+      return;
+    }
 
     const item = document.createElement('div');
     item.className = 'service-item';
@@ -151,7 +160,9 @@ export class Services {
    */
   removeServiceItem(itemIndex) {
     const item = this.serviceItems[itemIndex];
-    if (!item) return;
+    if (!item) {
+      return;
+    }
 
     item.remove();
     this.serviceItems = document.querySelectorAll('.service-item');
@@ -162,7 +173,9 @@ export class Services {
    */
   getServiceItemData(itemIndex) {
     const item = this.serviceItems[itemIndex];
-    if (!item) return null;
+    if (!item) {
+      return null;
+    }
 
     const title = item.querySelector('.service-title')?.textContent;
     const description = item.querySelector('.service-description')?.textContent;
@@ -186,10 +199,10 @@ export class Services {
     this.serviceItems.forEach(item => {
       const title = item.querySelector('.service-title')?.textContent.toLowerCase();
       const description = item.querySelector('.service-description')?.textContent.toLowerCase();
-      
-      const matches = title?.includes(keyword.toLowerCase()) || 
-                     description?.includes(keyword.toLowerCase());
-      
+
+      const matches =
+        title?.includes(keyword.toLowerCase()) || description?.includes(keyword.toLowerCase());
+
       item.style.display = matches ? 'block' : 'none';
     });
   }

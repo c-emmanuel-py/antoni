@@ -7,7 +7,7 @@ export class Footer {
     this.footer = document.querySelector('.footer');
     this.footerLinks = document.querySelectorAll('.footer-nav a');
     this.contactLinks = document.querySelectorAll('.footer-contact a');
-    
+
     this.init();
   }
 
@@ -19,32 +19,37 @@ export class Footer {
   bindEvents() {
     // Handle footer link clicks
     this.footerLinks.forEach(link => {
-      link.addEventListener('click', (e) => this.handleLinkClick(e));
+      link.addEventListener('click', e => this.handleLinkClick(e));
     });
 
     // Handle contact link clicks
     this.contactLinks.forEach(link => {
-      link.addEventListener('click', (e) => this.handleContactLinkClick(e));
+      link.addEventListener('click', e => this.handleContactLinkClick(e));
     });
 
     // Handle keyboard navigation
-    document.addEventListener('keydown', (e) => this.handleKeydown(e));
+    document.addEventListener('keydown', e => this.handleKeydown(e));
   }
 
   initAnimations() {
-    if (!this.footer) return;
+    if (!this.footer) {
+      return;
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.animateFooterElements();
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.animateFooterElements();
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
 
     observer.observe(this.footer);
   }
@@ -61,7 +66,7 @@ export class Footer {
 
   handleLinkClick(e) {
     const href = e.currentTarget.getAttribute('href');
-    
+
     if (href && href.startsWith('#')) {
       e.preventDefault();
       this.scrollToSection(href.substring(1));
@@ -70,7 +75,7 @@ export class Footer {
 
   handleContactLinkClick(e) {
     const href = e.currentTarget.getAttribute('href');
-    
+
     // Track contact link clicks
     if (href.startsWith('tel:')) {
       this.trackEvent('contact', 'phone_click', href);
@@ -83,7 +88,7 @@ export class Footer {
     const section = document.getElementById(sectionId);
     if (section) {
       const offsetTop = section.offsetTop - 80; // Account for fixed navbar
-      
+
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
@@ -94,7 +99,7 @@ export class Footer {
   handleKeydown(e) {
     // Handle keyboard navigation for footer links
     if (e.key === 'Enter' || e.key === ' ') {
-      const target = e.target;
+      const { target } = e;
       if (target.tagName === 'A' && target.closest('.footer')) {
         e.preventDefault();
         target.click();
@@ -148,10 +153,12 @@ export class Footer {
    */
   updateAddress(addressData) {
     const addressElement = document.querySelector('.footer-address');
-    if (!addressElement) return;
+    if (!addressElement) {
+      return;
+    }
 
     const { line1, line2, line3 } = addressData;
-    
+
     addressElement.innerHTML = `
       <p>${line1 || ''}</p>
       <p>${line2 || ''}</p>
@@ -164,18 +171,20 @@ export class Footer {
    */
   addFooterLink(linkData) {
     const footerNav = document.querySelector('.footer-nav ul');
-    if (!footerNav) return;
+    if (!footerNav) {
+      return;
+    }
 
     const li = document.createElement('li');
     const a = document.createElement('a');
-    
+
     a.href = linkData.href;
     a.textContent = linkData.text;
-    a.addEventListener('click', (e) => this.handleLinkClick(e));
-    
+    a.addEventListener('click', e => this.handleLinkClick(e));
+
     li.appendChild(a);
     footerNav.appendChild(li);
-    
+
     // Update footer links array
     this.footerLinks = document.querySelectorAll('.footer-nav a');
   }
@@ -184,10 +193,8 @@ export class Footer {
    * Remove footer link
    */
   removeFooterLink(linkText) {
-    const link = Array.from(this.footerLinks).find(link => 
-      link.textContent.trim() === linkText
-    );
-    
+    const link = Array.from(this.footerLinks).find(link => link.textContent.trim() === linkText);
+
     if (link && link.parentElement) {
       link.parentElement.remove();
       this.footerLinks = document.querySelectorAll('.footer-nav a');
@@ -199,7 +206,9 @@ export class Footer {
    */
   updateQuote(quoteData) {
     const quoteElement = document.querySelector('.footer-quote');
-    if (!quoteElement) return;
+    if (!quoteElement) {
+      return;
+    }
 
     const quoteText = quoteElement.querySelector('p');
     const quoteAuthor = quoteElement.querySelector('cite');
@@ -218,7 +227,9 @@ export class Footer {
    */
   updateCopyrightYear() {
     const copyrightElement = document.querySelector('.footer-legal p');
-    if (!copyrightElement) return;
+    if (!copyrightElement) {
+      return;
+    }
 
     const currentYear = new Date().getFullYear();
     const text = copyrightElement.textContent;

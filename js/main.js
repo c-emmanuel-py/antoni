@@ -90,7 +90,7 @@ class App {
    * Get dominant color from image
    */
   getImageDominantColor(imageUrl) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       const img = new Image();
       img.crossOrigin = 'anonymous';
 
@@ -105,7 +105,7 @@ class App {
           ctx.drawImage(img, 0, 0);
 
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          const data = imageData.data;
+          const { data } = imageData;
 
           // Sample colors from the image
           const colors = [];
@@ -117,7 +117,8 @@ class App {
             const b = data[i + 2];
             const a = data[i + 3];
 
-            if (a > 128) { // Only consider non-transparent pixels
+            if (a > 128) {
+              // Only consider non-transparent pixels
               colors.push({ r, g, b });
             }
           }
@@ -155,10 +156,12 @@ class App {
    * Convert RGB to hex
    */
   rgbToHex(r, g, b) {
-    return '#' + [r, g, b].map(x => {
-      const hex = x.toString(16);
-      return hex.length === 1 ? '0' + hex : hex;
-    }).join('');
+    return `#${[r, g, b]
+      .map(x => {
+        const hex = x.toString(16);
+        return hex.length === 1 ? `0${hex}` : hex;
+      })
+      .join('')}`;
   }
 
   /**
@@ -198,7 +201,7 @@ class App {
     });
 
     // Handle keyboard navigation
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
       this.handleKeyboardNavigation(e);
     });
   }
@@ -260,7 +263,9 @@ class App {
       const modal = document.querySelector('.modal-overlay.active');
       if (modal) {
         const closeBtn = modal.querySelector('.modal-close');
-        if (closeBtn) closeBtn.click();
+        if (closeBtn) {
+          closeBtn.click();
+        }
       }
     }
 
@@ -271,10 +276,14 @@ class App {
         e.preventDefault();
         if (e.key === 'ArrowLeft') {
           const prevBtn = activeCarousel.querySelector('.slider-btn.prev');
-          if (prevBtn) prevBtn.click();
+          if (prevBtn) {
+            prevBtn.click();
+          }
         } else {
           const nextBtn = activeCarousel.querySelector('.slider-btn.next');
-          if (nextBtn) nextBtn.click();
+          if (nextBtn) {
+            nextBtn.click();
+          }
         }
       }
     }
@@ -285,21 +294,24 @@ class App {
    */
   initLazyLoading() {
     if ('IntersectionObserver' in window) {
-      const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            if (img.dataset.src) {
-              img.src = img.dataset.src;
-              img.removeAttribute('data-src');
-              imageObserver.unobserve(img);
+      const imageObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+              }
             }
-          }
-        });
-      }, {
-        rootMargin: '50px 0px',
-        threshold: 0.01
-      });
+          });
+        },
+        {
+          rootMargin: '50px 0px',
+          threshold: 0.01
+        }
+      );
 
       // Observe all images with data-src
       document.querySelectorAll('img[data-src]').forEach(img => {
@@ -313,15 +325,33 @@ class App {
    */
   destroy() {
     // Clean up components
-    if (this.navbar && this.navbar.destroy) this.navbar.destroy();
-    if (this.hero && this.hero.destroy) this.hero.destroy();
-    if (this.about && this.about.destroy) this.about.destroy();
-    if (this.services && this.services.destroy) this.services.destroy();
-    if (this.projects && this.projects.destroy) this.projects.destroy();
-    if (this.team && this.team.destroy) this.team.destroy();
-    if (this.contact && this.contact.destroy) this.contact.destroy();
-    if (this.footer && this.footer.destroy) this.footer.destroy();
-    if (this.scrollAnimations && this.scrollAnimations.destroy) this.scrollAnimations.destroy();
+    if (this.navbar && this.navbar.destroy) {
+      this.navbar.destroy();
+    }
+    if (this.hero && this.hero.destroy) {
+      this.hero.destroy();
+    }
+    if (this.about && this.about.destroy) {
+      this.about.destroy();
+    }
+    if (this.services && this.services.destroy) {
+      this.services.destroy();
+    }
+    if (this.projects && this.projects.destroy) {
+      this.projects.destroy();
+    }
+    if (this.team && this.team.destroy) {
+      this.team.destroy();
+    }
+    if (this.contact && this.contact.destroy) {
+      this.contact.destroy();
+    }
+    if (this.footer && this.footer.destroy) {
+      this.footer.destroy();
+    }
+    if (this.scrollAnimations && this.scrollAnimations.destroy) {
+      this.scrollAnimations.destroy();
+    }
 
     // Clean up global listeners
     window.removeEventListener('resize', this.handleResize);

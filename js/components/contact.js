@@ -10,7 +10,7 @@ export class Contact {
     this.submitButton = document.querySelector('.contact-form button[type="submit"]');
     this.whatsappButton = document.querySelector('.btn-whatsapp');
     this.toast = document.getElementById('toast');
-    
+
     this.init();
   }
 
@@ -23,7 +23,7 @@ export class Contact {
   bindEvents() {
     // Form submission
     if (this.contactForm) {
-      this.contactForm.addEventListener('submit', (e) => this.handleFormSubmit(e));
+      this.contactForm.addEventListener('submit', e => this.handleFormSubmit(e));
     }
 
     // Real-time validation
@@ -34,7 +34,7 @@ export class Contact {
 
     // WhatsApp button
     if (this.whatsappButton) {
-      this.whatsappButton.addEventListener('click', (e) => this.handleWhatsAppClick(e));
+      this.whatsappButton.addEventListener('click', e => this.handleWhatsAppClick(e));
     }
 
     // Toast close
@@ -44,7 +44,7 @@ export class Contact {
     }
 
     // Handle keyboard navigation
-    document.addEventListener('keydown', (e) => this.handleKeydown(e));
+    document.addEventListener('keydown', e => this.handleKeydown(e));
   }
 
   initFormValidation() {
@@ -58,11 +58,13 @@ export class Contact {
 
   initPhoneMask() {
     const phoneInput = document.getElementById('phone');
-    if (!phoneInput) return;
+    if (!phoneInput) {
+      return;
+    }
 
-    phoneInput.addEventListener('input', (e) => {
+    phoneInput.addEventListener('input', e => {
       let value = e.target.value.replace(/\D/g, '');
-      
+
       if (value.length >= 10) {
         value = value.substring(0, 10);
         value = `(${value.substring(0, 3)}) ${value.substring(3, 6)}-${value.substring(6)}`;
@@ -73,14 +75,14 @@ export class Contact {
       } else if (value.length > 0) {
         value = `(${value}`;
       }
-      
+
       e.target.value = value;
     });
   }
 
   handleFormSubmit(e) {
     e.preventDefault();
-    
+
     if (!this.validateForm()) {
       this.focusFirstError();
       return;
@@ -92,7 +94,7 @@ export class Contact {
 
   validateForm() {
     let isValid = true;
-    
+
     this.formInputs.forEach(input => {
       if (!this.validateField(input)) {
         isValid = false;
@@ -106,10 +108,10 @@ export class Contact {
     const value = input.value.trim();
     const fieldName = input.name;
     const isRequired = input.hasAttribute('required');
-    
+
     // Clear previous errors
     this.clearFieldError(input);
-    
+
     // Required field validation
     if (isRequired && !value) {
       this.showFieldError(input, `${this.getFieldLabel(input)} is required`);
@@ -147,12 +149,12 @@ export class Contact {
     if (fieldName === 'description' && value) {
       const minLength = parseInt(input.getAttribute('minlength')) || 280;
       const maxLength = parseInt(input.getAttribute('maxlength')) || 1000;
-      
+
       if (value.length < minLength) {
         this.showFieldError(input, `Description must be at least ${minLength} characters`);
         return false;
       }
-      
+
       if (value.length > maxLength) {
         this.showFieldError(input, `Description must be no more than ${maxLength} characters`);
         return false;
@@ -164,7 +166,7 @@ export class Contact {
 
   showFieldError(input, message) {
     input.setAttribute('aria-invalid', 'true');
-    
+
     const errorElement = document.getElementById(`${input.name}-error`);
     if (errorElement) {
       errorElement.textContent = message;
@@ -174,7 +176,7 @@ export class Contact {
 
   clearFieldError(input) {
     input.setAttribute('aria-invalid', 'false');
-    
+
     const errorElement = document.getElementById(`${input.name}-error`);
     if (errorElement) {
       errorElement.textContent = '';
@@ -197,11 +199,11 @@ export class Contact {
   getFormData() {
     const formData = new FormData(this.contactForm);
     const data = {};
-    
-    for (let [key, value] of formData.entries()) {
+
+    for (const [key, value] of formData.entries()) {
       data[key] = value;
     }
-    
+
     return data;
   }
 
@@ -209,19 +211,18 @@ export class Contact {
     try {
       // Show loading state
       this.setLoadingState(true);
-      
+
       // Create mailto URL
       const mailtoUrl = this.createMailtoUrl(payload);
-      
+
       // Open email client
       window.location.href = mailtoUrl;
-      
+
       // Show success message
       this.showToast('Your email app will open to send the request.');
-      
+
       // Reset form
       this.contactForm.reset();
-      
     } catch (error) {
       console.error('Error sending contact:', error);
       this.showToast('There was an error sending your message. Please try again.');
@@ -248,8 +249,8 @@ This message was sent from the Antoni website contact form.
     `.trim();
 
     const params = new URLSearchParams({
-      subject: subject,
-      body: body
+      subject,
+      body
     });
 
     return `mailto:info@grupoantoni.com?${params.toString()}`;
@@ -267,7 +268,9 @@ This message was sent from the Antoni website contact form.
   }
 
   showToast(message) {
-    if (!this.toast) return;
+    if (!this.toast) {
+      return;
+    }
 
     const messageElement = this.toast.querySelector('.toast-message');
     if (messageElement) {
@@ -275,7 +278,7 @@ This message was sent from the Antoni website contact form.
     }
 
     this.toast.classList.add('show');
-    
+
     // Auto-hide after 5 seconds
     setTimeout(() => {
       this.hideToast();

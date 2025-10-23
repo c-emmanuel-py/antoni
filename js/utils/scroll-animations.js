@@ -21,7 +21,7 @@ export class ScrollAnimations {
       rootMargin: '0px 0px -50px 0px'
     };
 
-    this.observer = new IntersectionObserver((entries) => {
+    this.observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           this.animateElement(entry.target);
@@ -40,7 +40,7 @@ export class ScrollAnimations {
   animateElement(element) {
     const animationType = element.getAttribute('data-animate');
     const delay = element.getAttribute('data-delay') || 0;
-    
+
     setTimeout(() => {
       element.classList.add('animate');
       this.triggerAnimationEvent(element, animationType);
@@ -54,7 +54,7 @@ export class ScrollAnimations {
         animationType
       }
     });
-    
+
     element.dispatchEvent(event);
   }
 
@@ -95,7 +95,7 @@ export class ScrollAnimations {
 
   getInitialTransform(element) {
     const animationType = element.getAttribute('data-animate');
-    
+
     switch (animationType) {
       case 'fade-up':
         return 'translateY(20px)';
@@ -121,19 +121,20 @@ export class ScrollAnimations {
     const windowHeight = window.innerHeight;
     const elementTop = rect.top;
     const elementHeight = rect.height;
-    
+
     // Calculate scroll progress
-    const scrollProgress = Math.max(0, Math.min(1, 
-      (windowHeight - elementTop) / (windowHeight + elementHeight)
-    ));
-    
+    const scrollProgress = Math.max(
+      0,
+      Math.min(1, (windowHeight - elementTop) / (windowHeight + elementHeight))
+    );
+
     // Apply scroll-based effects
     this.applyScrollEffect(element, scrollProgress);
   }
 
   applyScrollEffect(element, progress) {
     const animationType = element.getAttribute('data-animate');
-    
+
     switch (animationType) {
       case 'fade-up':
         element.style.transform = `translateY(${20 * (1 - progress)}px)`;
@@ -160,7 +161,9 @@ export class ScrollAnimations {
    * Add animation to element
    */
   addAnimation(element, animationType = 'fade-up', delay = 0) {
-    if (!element) return;
+    if (!element) {
+      return;
+    }
 
     element.setAttribute('data-animate', animationType);
     if (delay > 0) {
@@ -181,7 +184,9 @@ export class ScrollAnimations {
    * Remove animation from element
    */
   removeAnimation(element) {
-    if (!element) return;
+    if (!element) {
+      return;
+    }
 
     element.removeAttribute('data-animate');
     element.removeAttribute('data-delay');
@@ -197,7 +202,9 @@ export class ScrollAnimations {
    * Animate element immediately
    */
   animateNow(element) {
-    if (!element) return;
+    if (!element) {
+      return;
+    }
 
     const animationType = element.getAttribute('data-animate') || 'fade-up';
     element.classList.add('animate');
@@ -208,7 +215,9 @@ export class ScrollAnimations {
    * Reset element animation
    */
   resetAnimation(element) {
-    if (!element) return;
+    if (!element) {
+      return;
+    }
 
     element.classList.remove('animate');
     element.style.opacity = '0';
@@ -237,10 +246,8 @@ export class ScrollAnimations {
     const windowHeight = window.innerHeight;
     const elementTop = rect.top;
     const elementHeight = rect.height;
-    
-    return Math.max(0, Math.min(1, 
-      (windowHeight - elementTop) / (windowHeight + elementHeight)
-    ));
+
+    return Math.max(0, Math.min(1, (windowHeight - elementTop) / (windowHeight + elementHeight)));
   }
 
   /**

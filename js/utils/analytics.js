@@ -15,12 +15,14 @@ export class Analytics {
   }
 
   initialize() {
-    if (this.isInitialized) return;
+    if (this.isInitialized) {
+      return;
+    }
 
     this.loadGoogleAnalytics();
     this.loadFacebookPixel();
     this.loadMicrosoftClarity();
-    
+
     this.isInitialized = true;
     console.log('Analytics initialized');
   }
@@ -40,7 +42,9 @@ export class Analytics {
 
     // Initialize gtag
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     window.gtag = gtag;
     gtag('js', new Date());
     gtag('config', measurementId, {

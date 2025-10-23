@@ -69,7 +69,9 @@ export class Brand {
   }
 
   drag(e) {
-    if (!this.isDragging) return;
+    if (!this.isDragging) {
+      return;
+    }
 
     const currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
     this.dragOffset = currentX - this.startX;
@@ -82,7 +84,9 @@ export class Brand {
   }
 
   endDrag(e) {
-    if (!this.isDragging) return;
+    if (!this.isDragging) {
+      return;
+    }
 
     this.isDragging = false;
 
@@ -111,7 +115,7 @@ export class Brand {
       const brand = logo.getAttribute('data-brand');
 
       if (link) {
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', e => {
           // Solo permitir clic si no estamos arrastrando
           if (!this.isDragging) {
             // Log para debugging

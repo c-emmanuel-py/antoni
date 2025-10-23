@@ -29,14 +29,14 @@ export class Navigation {
     }
 
     // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', e => {
       if (this.isMenuOpen && !this.header.contains(e.target)) {
         this.closeMenu();
       }
     });
 
     // Close menu on escape key
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && this.isMenuOpen) {
         this.closeMenu();
       }
@@ -50,14 +50,14 @@ export class Navigation {
 
     // Handle navigation link clicks
     this.navLinks.forEach(link => {
-      link.addEventListener('click', (e) => this.handleNavClick(e));
+      link.addEventListener('click', e => this.handleNavClick(e));
     });
   }
 
   initSmoothScrolling() {
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', (e) => {
+      anchor.addEventListener('click', e => {
         e.preventDefault();
         const target = document.querySelector(anchor.getAttribute('href'));
         if (target) {
@@ -72,7 +72,7 @@ export class Navigation {
     const sections = document.querySelectorAll('section[id]');
 
     const updateActiveLink = () => {
-      const scrollY = window.scrollY;
+      const { scrollY } = window;
       const windowHeight = window.innerHeight;
 
       sections.forEach(section => {

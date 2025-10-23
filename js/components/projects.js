@@ -5,7 +5,7 @@
 export class Projects {
   constructor() {
     this.projects = document.getElementById('projects');
-    this.projectCards = document.querySelectorAll('.project-card');
+    this.projectCards = document.querySelectorAll('.project-item');
     this.learnMoreButtons = document.querySelectorAll('.project-learn-more');
     this.modalOverlay = document.getElementById('modalOverlay');
     this.modal = document.querySelector('.modal');
@@ -14,10 +14,10 @@ export class Projects {
     this.modalTitle = document.getElementById('modalTitle');
     this.modalLocation = document.getElementById('modalLocation');
     this.modalDescription = document.getElementById('modalDescription');
-    
+
     this.isModalOpen = false;
     this.currentProject = null;
-    
+
     this.init();
   }
 
@@ -30,7 +30,7 @@ export class Projects {
   bindEvents() {
     // Handle learn more button clicks
     this.learnMoreButtons.forEach(button => {
-      button.addEventListener('click', (e) => this.handleLearnMoreClick(e));
+      button.addEventListener('click', e => this.handleLearnMoreClick(e));
     });
 
     // Handle modal close
@@ -40,7 +40,7 @@ export class Projects {
 
     // Handle modal overlay click
     if (this.modalOverlay) {
-      this.modalOverlay.addEventListener('click', (e) => {
+      this.modalOverlay.addEventListener('click', e => {
         if (e.target === this.modalOverlay) {
           this.closeModal();
         }
@@ -48,26 +48,34 @@ export class Projects {
     }
 
     // Handle keyboard navigation
-    document.addEventListener('keydown', (e) => this.handleKeydown(e));
+    document.addEventListener('keydown', e => this.handleKeydown(e));
 
     // Handle resize
     window.addEventListener('resize', () => this.handleResize());
+
+    // Handle scroll for section boundaries
+    window.addEventListener('scroll', () => this.handleScroll());
   }
 
   initAnimations() {
-    if (!this.projects) return;
+    if (!this.projects) {
+      return;
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.animateCards();
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.animateCards();
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
 
     observer.observe(this.projects);
   }
@@ -92,7 +100,7 @@ export class Projects {
     e.preventDefault();
     const button = e.currentTarget;
     const projectId = button.getAttribute('data-modal');
-    
+
     if (projectId) {
       this.openModal(projectId);
     }
@@ -100,7 +108,9 @@ export class Projects {
 
   openModal(projectId) {
     const projectData = this.getProjectData(projectId);
-    if (!projectData) return;
+    if (!projectData) {
+      return;
+    }
 
     this.currentProject = projectData;
     this.isModalOpen = true;
@@ -140,7 +150,9 @@ export class Projects {
   }
 
   closeModal() {
-    if (!this.isModalOpen) return;
+    if (!this.isModalOpen) {
+      return;
+    }
 
     this.isModalOpen = false;
     this.currentProject = null;
@@ -162,7 +174,9 @@ export class Projects {
   }
 
   handleKeydown(e) {
-    if (!this.isModalOpen) return;
+    if (!this.isModalOpen) {
+      return;
+    }
 
     // Close modal on Escape
     if (e.key === 'Escape') {
@@ -176,12 +190,14 @@ export class Projects {
   }
 
   handleTabKey(e) {
-    if (!this.modal) return;
+    if (!this.modal) {
+      return;
+    }
 
     const focusableElements = this.modal.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
-    
+
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
 
@@ -190,21 +206,21 @@ export class Projects {
         e.preventDefault();
         lastElement.focus();
       }
-    } else {
-      if (document.activeElement === lastElement) {
-        e.preventDefault();
-        firstElement.focus();
-      }
+    } else if (document.activeElement === lastElement) {
+      e.preventDefault();
+      firstElement.focus();
     }
   }
 
   trapFocus() {
-    if (!this.modal) return;
+    if (!this.modal) {
+      return;
+    }
 
     const focusableElements = this.modal.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
-    
+
     const firstElement = focusableElements[0];
     if (firstElement) {
       firstElement.focus();
@@ -218,9 +234,9 @@ export class Projects {
     announcement.setAttribute('aria-atomic', 'true');
     announcement.className = 'sr-only';
     announcement.textContent = `Modal opened: ${title}`;
-    
+
     document.body.appendChild(announcement);
-    
+
     setTimeout(() => {
       document.body.removeChild(announcement);
     }, 1000);
@@ -297,11 +313,54 @@ export class Projects {
     return projectData[projectId] || null;
   }
 
+  handleScroll() {
+    if (!this.projects) {
+      return;
+    }
+
+    const rect = this.projects.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Check if section is in viewport
+    const isInView = rect.top < windowHeight && rect.bottom > 0;
+
+    if (isInView) {
+      // Ensure section doesn't overlap with others
+      this.adjustSectionPosition();
+    }
+  }
+
+  adjustSectionPosition() {
+    if (!this.projects) {
+      return;
+    }
+
+    const rect = this.projects.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // If section is too close to top, add margin
+    if (rect.top < 50) {
+      this.projects.style.marginTop = '50px';
+    } else {
+      this.projects.style.marginTop = '';
+    }
+
+    // If section is too close to bottom, add margin
+    if (rect.bottom > windowHeight - 50) {
+      this.projects.style.marginBottom = '50px';
+    } else {
+      this.projects.style.marginBottom = '';
+    }
+  }
+
   handleResize() {
     // Reset any transform styles on resize
     this.projectCards.forEach(card => {
       card.style.transform = '';
     });
+
+    // Recalculate section position
+    this.adjustSectionPosition();
   }
 
   /**
@@ -309,7 +368,9 @@ export class Projects {
    */
   updateProjectCard(cardIndex, newContent) {
     const card = this.projectCards[cardIndex];
-    if (!card) return;
+    if (!card) {
+      return;
+    }
 
     const title = card.querySelector('.project-title');
     const location = card.querySelector('.project-location');
@@ -333,7 +394,9 @@ export class Projects {
    */
   addProjectCard(projectData) {
     const projectsGrid = document.querySelector('.projects-grid');
-    if (!projectsGrid) return;
+    if (!projectsGrid) {
+      return;
+    }
 
     const card = document.createElement('article');
     card.className = 'project-card';
@@ -352,11 +415,11 @@ export class Projects {
     // Add event listener for learn more button
     const learnMoreBtn = card.querySelector('.project-learn-more');
     if (learnMoreBtn) {
-      learnMoreBtn.addEventListener('click', (e) => this.handleLearnMoreClick(e));
+      learnMoreBtn.addEventListener('click', e => this.handleLearnMoreClick(e));
     }
 
     projectsGrid.appendChild(card);
-    this.projectCards = document.querySelectorAll('.project-card');
+    this.projectCards = document.querySelectorAll('.project-item');
     this.learnMoreButtons = document.querySelectorAll('.project-learn-more');
   }
 
@@ -376,6 +439,7 @@ export class Projects {
 
     document.removeEventListener('keydown', this.handleKeydown);
     window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('scroll', this.handleScroll);
 
     // Close modal if open
     if (this.isModalOpen) {
@@ -386,5 +450,11 @@ export class Projects {
     this.projectCards.forEach(card => {
       card.style.transform = '';
     });
+
+    // Reset section positioning
+    if (this.projects) {
+      this.projects.style.marginTop = '';
+      this.projects.style.marginBottom = '';
+    }
   }
 }

@@ -34,10 +34,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg,
-      rgba(0, 0, 0, 0.1) 50%,
-      rgba(0, 0, 0, 0.3) 75%,
-      rgba(0, 0, 0, 0.7) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.3) 75%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
   z-index: 2;
 }
 
@@ -138,9 +140,7 @@
   }
 }
 
-
 @keyframes bounce {
-
   0%,
   20%,
   50%,
@@ -268,7 +268,6 @@
 
 /* High contrast mode */
 @media (prefers-contrast: high) {
-
   .hero-title,
   .hero-subtitle {
     text-shadow: none;

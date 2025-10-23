@@ -30,10 +30,10 @@
    ======================================== */
 :root {
   /* Colors */
-  --color-primary: #4A90E2;
-  --color-primary-dark: #357ABD;
-  --color-secondary: #2C3E50;
-  --color-accent: #E74C3C;
+  --color-primary: #4a90e2;
+  --color-primary-dark: #357abd;
+  --color-secondary: #2c3e50;
+  --color-accent: #e74c3c;
 
   /* Background Colors */
   --bg-primary: #ffffff;

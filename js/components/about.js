@@ -29,19 +29,24 @@ export class About {
   }
 
   initAnimations() {
-    if (!this.about) return;
+    if (!this.about) {
+      return;
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.animateCards();
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.animateCards();
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
 
     observer.observe(this.about);
   }
@@ -91,7 +96,9 @@ export class About {
    */
   updateCardContent(cardIndex, newContent) {
     const card = this.aboutCards[cardIndex];
-    if (!card) return;
+    if (!card) {
+      return;
+    }
 
     const title = card.querySelector('.card-title');
     const content = card.querySelector('.card-content');
@@ -110,7 +117,9 @@ export class About {
    */
   addCard(cardData) {
     const cardsContainer = document.querySelector('.about-cards');
-    if (!cardsContainer) return;
+    if (!cardsContainer) {
+      return;
+    }
 
     const card = document.createElement('article');
     card.className = 'about-card';
@@ -134,7 +143,9 @@ export class About {
    */
   removeCard(cardIndex) {
     const card = this.aboutCards[cardIndex];
-    if (!card) return;
+    if (!card) {
+      return;
+    }
 
     card.remove();
     this.aboutCards = document.querySelectorAll('.about-card');
@@ -145,7 +156,9 @@ export class About {
    */
   getCardData(cardIndex) {
     const card = this.aboutCards[cardIndex];
-    if (!card) return null;
+    if (!card) {
+      return null;
+    }
 
     const title = card.querySelector('.card-title')?.textContent;
     const content = card.querySelector('.card-content')?.textContent;

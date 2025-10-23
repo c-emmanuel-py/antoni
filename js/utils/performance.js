@@ -27,7 +27,8 @@ export class Performance {
       const navigation = performance.getEntriesByType('navigation')[0];
 
       this.metrics.pageLoad = {
-        domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
+        domContentLoaded:
+          navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
         loadComplete: navigation.loadEventEnd - navigation.loadEventStart,
         totalTime: navigation.loadEventEnd - navigation.fetchStart
       };
@@ -58,7 +59,7 @@ export class Performance {
 
   observeLCP() {
     if ('PerformanceObserver' in window) {
-      const observer = new PerformanceObserver((list) => {
+      const observer = new PerformanceObserver(list => {
         const entries = list.getEntries();
         const lastEntry = entries[entries.length - 1];
         this.metrics.lcp = lastEntry.startTime;
@@ -71,7 +72,7 @@ export class Performance {
 
   observeFID() {
     if ('PerformanceObserver' in window) {
-      const observer = new PerformanceObserver((list) => {
+      const observer = new PerformanceObserver(list => {
         const entries = list.getEntries();
         entries.forEach(entry => {
           this.metrics.fid = entry.processingStart - entry.startTime;
@@ -86,7 +87,7 @@ export class Performance {
   observeCLS() {
     if ('PerformanceObserver' in window) {
       let clsValue = 0;
-      const observer = new PerformanceObserver((list) => {
+      const observer = new PerformanceObserver(list => {
         const entries = list.getEntries();
         entries.forEach(entry => {
           if (!entry.hadRecentInput) {
@@ -103,7 +104,7 @@ export class Performance {
 
   setupPerformanceObserver() {
     if ('PerformanceObserver' in window) {
-      const observer = new PerformanceObserver((list) => {
+      const observer = new PerformanceObserver(list => {
         const entries = list.getEntries();
         entries.forEach(entry => {
           this.trackResourcePerformance(entry);
@@ -134,7 +135,7 @@ export class Performance {
 
   trackUserInteractions() {
     // Track click events
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', e => {
       this.trackInteraction('click', e.target);
     });
 
@@ -148,7 +149,7 @@ export class Performance {
     });
 
     // Track form interactions
-    document.addEventListener('submit', (e) => {
+    document.addEventListener('submit', e => {
       this.trackInteraction('form_submit', e.target);
     });
   }
@@ -172,10 +173,18 @@ export class Performance {
   }
 
   getResourceType(entry) {
-    if (entry.name.includes('.css')) return 'stylesheet';
-    if (entry.name.includes('.js')) return 'script';
-    if (entry.name.match(/\.(jpg|jpeg|png|gif|svg|webp)$/)) return 'image';
-    if (entry.name.match(/\.(woff|woff2|ttf|otf)$/)) return 'font';
+    if (entry.name.includes('.css')) {
+      return 'stylesheet';
+    }
+    if (entry.name.includes('.js')) {
+      return 'script';
+    }
+    if (entry.name.match(/\.(jpg|jpeg|png|gif|svg|webp)$/)) {
+      return 'image';
+    }
+    if (entry.name.match(/\.(woff|woff2|ttf|otf)$/)) {
+      return 'font';
+    }
     return 'other';
   }
 
@@ -191,10 +200,7 @@ export class Performance {
   }
 
   preloadCriticalResources() {
-    const criticalResources = [
-      '/css/main.css',
-      '/js/main.js'
-    ];
+    const criticalResources = ['/css/main.css', '/js/main.js'];
 
     criticalResources.forEach(resource => {
       const link = document.createElement('link');
@@ -223,7 +229,7 @@ export class Performance {
       if (!inThrottle) {
         func.apply(this, args);
         inThrottle = true;
-        setTimeout(() => inThrottle = false, limit);
+        setTimeout(() => (inThrottle = false), limit);
       }
     };
   }
@@ -250,11 +256,13 @@ export class Performance {
       metrics: this.metrics,
       timestamp: Date.now(),
       userAgent: navigator.userAgent,
-      connection: navigator.connection ? {
-        effectiveType: navigator.connection.effectiveType,
-        downlink: navigator.connection.downlink,
-        rtt: navigator.connection.rtt
-      } : null
+      connection: navigator.connection
+        ? {
+            effectiveType: navigator.connection.effectiveType,
+            downlink: navigator.connection.downlink,
+            rtt: navigator.connection.rtt
+          }
+        : null
     };
   }
 }

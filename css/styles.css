@@ -5,7 +5,7 @@
 /* CSS Custom Properties */
 :root {
   /* Colors - Will be updated by JavaScript with logo color */
-  --accent: #0F4C81;
+  --accent: #0f4c81;
   --accent-contrast: #ffffff;
   --bg: #ffffff;
   --bg-secondary: #f8f9fa;
@@ -20,7 +20,9 @@
   --warning: #f59e0b;
 
   /* Typography */
-  --font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
+  --font-family:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
+    'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
   --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
   --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
   --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
@@ -118,7 +120,6 @@ body {
 
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -872,9 +873,9 @@ img {
   box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.1);
 }
 
-.form-input[aria-invalid="true"],
-.form-select[aria-invalid="true"],
-.form-textarea[aria-invalid="true"] {
+.form-input[aria-invalid='true'],
+.form-select[aria-invalid='true'],
+.form-textarea[aria-invalid='true'] {
   border-color: var(--error);
 }
 
@@ -1244,19 +1245,19 @@ img {
   transform: translateY(0);
 }
 
-[data-animate="fade-up"] {
+[data-animate='fade-up'] {
   transform: translateY(20px);
 }
 
-[data-animate="fade-left"] {
+[data-animate='fade-left'] {
   transform: translateX(-20px);
 }
 
-[data-animate="fade-right"] {
+[data-animate='fade-right'] {
   transform: translateX(20px);
 }
 
-[data-animate="fade-in"] {
+[data-animate='fade-in'] {
   transform: none;
 }
 
@@ -1273,7 +1274,6 @@ img {
 
 /* Print styles */
 @media print {
-
   .navbar,
   .modal-overlay,
   .toast {
@@ -1293,4 +1293,16 @@ img {
   .section-title {
     page-break-after: avoid;
   }
+}
+
+/* ========================================
+   SECTION SPACING FOR HARMONY
+   ======================================== */
+section {
+  margin: 0;
+  padding: 0;
+}
+
+section + section {
+  margin-top: 0;
 }

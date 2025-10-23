@@ -9,10 +9,10 @@ export class Navbar {
     this.navMenu = document.querySelector('.nav-menu');
     this.navLinks = document.querySelectorAll('.nav-link');
     this.sections = document.querySelectorAll('section[id]');
-    
+
     this.isMenuOpen = false;
     this.scrollThreshold = 100;
-    
+
     this.init();
   }
 
@@ -34,7 +34,7 @@ export class Navbar {
     });
 
     // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', e => {
       if (this.isMenuOpen && !this.navbar.contains(e.target)) {
         this.closeMenu();
       }
@@ -54,24 +54,24 @@ export class Navbar {
 
     // Handle keyboard navigation
     this.navLinks.forEach(link => {
-      link.addEventListener('keydown', (e) => this.handleKeydown(e));
+      link.addEventListener('keydown', e => this.handleKeydown(e));
     });
   }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
-    
+
     if (this.navToggle) {
       this.navToggle.setAttribute('aria-expanded', this.isMenuOpen);
     }
-    
+
     if (this.navMenu) {
       this.navMenu.classList.toggle('active', this.isMenuOpen);
     }
-    
+
     // Prevent body scroll when menu is open
     document.body.style.overflow = this.isMenuOpen ? 'hidden' : '';
-    
+
     // Focus management
     if (this.isMenuOpen) {
       this.navLinks[0]?.focus();
@@ -81,46 +81,46 @@ export class Navbar {
   closeMenu() {
     if (this.isMenuOpen) {
       this.isMenuOpen = false;
-      
+
       if (this.navToggle) {
         this.navToggle.setAttribute('aria-expanded', 'false');
       }
-      
+
       if (this.navMenu) {
         this.navMenu.classList.remove('active');
       }
-      
+
       document.body.style.overflow = '';
     }
   }
 
   handleScroll() {
-    const scrollY = window.scrollY;
-    
+    const { scrollY } = window;
+
     // Add/remove scrolled class
     if (this.navbar) {
       this.navbar.classList.toggle('scrolled', scrollY > this.scrollThreshold);
     }
-    
+
     // Update active link
     this.updateActiveLink();
   }
 
   updateActiveLink() {
-    const scrollY = window.scrollY;
+    const { scrollY } = window;
     const windowHeight = window.innerHeight;
-    
+
     this.sections.forEach(section => {
       const sectionTop = section.offsetTop - 100;
       const sectionHeight = section.offsetHeight;
       const sectionId = section.getAttribute('id');
-      
+
       if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
         // Remove active class from all links
         this.navLinks.forEach(link => {
           link.classList.remove('active');
         });
-        
+
         // Add active class to current link
         const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
         if (activeLink) {
@@ -141,19 +141,19 @@ export class Navbar {
     // Handle arrow key navigation
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
-      
+
       const currentIndex = Array.from(this.navLinks).indexOf(e.target);
       let nextIndex;
-      
+
       if (e.key === 'ArrowDown') {
         nextIndex = (currentIndex + 1) % this.navLinks.length;
       } else {
         nextIndex = currentIndex === 0 ? this.navLinks.length - 1 : currentIndex - 1;
       }
-      
+
       this.navLinks[nextIndex]?.focus();
     }
-    
+
     // Close menu on Escape
     if (e.key === 'Escape' && this.isMenuOpen) {
       this.closeMenu();
@@ -168,7 +168,7 @@ export class Navbar {
     const section = document.getElementById(sectionId);
     if (section) {
       const offsetTop = section.offsetTop - 80; // Account for fixed navbar
-      
+
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
@@ -180,8 +180,8 @@ export class Navbar {
    * Update navbar appearance based on scroll position
    */
   updateAppearance() {
-    const scrollY = window.scrollY;
-    
+    const { scrollY } = window;
+
     if (this.navbar) {
       if (scrollY > this.scrollThreshold) {
         this.navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
@@ -200,16 +200,16 @@ export class Navbar {
     if (this.navToggle) {
       this.navToggle.removeEventListener('click', this.toggleMenu);
     }
-    
+
     this.navLinks.forEach(link => {
       link.removeEventListener('click', this.closeMenu);
       link.removeEventListener('keydown', this.handleKeydown);
     });
-    
+
     window.removeEventListener('scroll', this.handleScroll);
     window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('click', this.closeMenu);
-    
+
     // Reset body overflow
     document.body.style.overflow = '';
   }

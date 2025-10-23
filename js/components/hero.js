@@ -8,7 +8,7 @@ export class Hero {
     this.heroContent = document.querySelector('.hero-content');
     this.heroBackground = document.querySelector('.hero-background');
     this.ctaButtons = document.querySelectorAll('.hero-actions .btn');
-    
+
     this.init();
   }
 
@@ -21,7 +21,7 @@ export class Hero {
   bindEvents() {
     // Handle CTA button clicks
     this.ctaButtons.forEach(button => {
-      button.addEventListener('click', (e) => this.handleCTAClick(e));
+      button.addEventListener('click', e => this.handleCTAClick(e));
     });
 
     // Handle scroll for parallax effect
@@ -38,13 +38,13 @@ export class Hero {
 
     // Handle keyboard navigation
     this.ctaButtons.forEach(button => {
-      button.addEventListener('keydown', (e) => this.handleKeydown(e));
+      button.addEventListener('keydown', e => this.handleKeydown(e));
     });
   }
 
   handleCTAClick(e) {
     const href = e.currentTarget.getAttribute('href');
-    
+
     if (href && href.startsWith('#')) {
       e.preventDefault();
       this.scrollToSection(href.substring(1));
@@ -55,7 +55,7 @@ export class Hero {
     const section = document.getElementById(sectionId);
     if (section) {
       const offsetTop = section.offsetTop - 80; // Account for fixed navbar
-      
+
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
@@ -72,12 +72,14 @@ export class Hero {
   }
 
   initParallax() {
-    if (!this.heroBackground) return;
+    if (!this.heroBackground) {
+      return;
+    }
 
     const handleParallax = () => {
       const scrolled = window.pageYOffset;
       const rate = scrolled * -0.5;
-      
+
       if (this.heroBackground) {
         this.heroBackground.style.transform = `translateY(${rate}px)`;
       }
@@ -91,7 +93,9 @@ export class Hero {
 
   initTypewriter() {
     const title = document.querySelector('.hero-title');
-    if (!title) return;
+    if (!title) {
+      return;
+    }
 
     const text = title.textContent;
     title.textContent = '';
@@ -113,7 +117,7 @@ export class Hero {
   handleScroll() {
     const scrolled = window.pageYOffset;
     const heroHeight = this.hero ? this.hero.offsetHeight : 0;
-    
+
     // Fade out hero content as user scrolls
     if (this.heroContent && scrolled > heroHeight * 0.5) {
       const opacity = Math.max(0, 1 - (scrolled - heroHeight * 0.5) / (heroHeight * 0.5));
@@ -135,18 +139,23 @@ export class Hero {
    */
   animateOnScroll() {
     const heroElements = this.hero?.querySelectorAll('[data-animate]');
-    if (!heroElements) return;
+    if (!heroElements) {
+      return;
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
 
     heroElements.forEach(element => {
       observer.observe(element);
@@ -157,14 +166,16 @@ export class Hero {
    * Update hero background based on scroll position
    */
   updateBackground() {
-    if (!this.heroBackground) return;
+    if (!this.heroBackground) {
+      return;
+    }
 
     const scrolled = window.pageYOffset;
     const heroHeight = this.hero ? this.hero.offsetHeight : 0;
-    
+
     // Add blur effect as user scrolls
     if (scrolled > heroHeight * 0.3) {
-      this.heroBackground.style.filter = `blur(${Math.min(2, scrolled / heroHeight * 4)}px)`;
+      this.heroBackground.style.filter = `blur(${Math.min(2, (scrolled / heroHeight) * 4)}px)`;
     } else {
       this.heroBackground.style.filter = 'none';
     }
@@ -175,20 +186,25 @@ export class Hero {
    */
   initVideo() {
     const video = this.hero?.querySelector('video');
-    if (!video) return;
+    if (!video) {
+      return;
+    }
 
     // Play video when it comes into view
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          video.play().catch(console.warn);
-        } else {
-          video.pause();
-        }
-      });
-    }, {
-      threshold: 0.5
-    });
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            video.play().catch(console.warn);
+          } else {
+            video.pause();
+          }
+        });
+      },
+      {
+        threshold: 0.5
+      }
+    );
 
     observer.observe(video);
   }

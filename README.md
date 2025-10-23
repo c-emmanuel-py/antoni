@@ -1,250 +1,187 @@
 # Grupo Antoni - Landing Page
 
-Una landing page moderna y responsive para Grupo Antoni, empresa especializada en arquitectura y construcción.
+Landing page profesional para Grupo Antoni, empresa líder en arquitectura y construcción en República Dominicana.
 
-## 🏗️ Características
+## 🚀 Características
 
-- **Diseño Responsive**: Optimizado para todos los dispositivos
-- **Performance**: Carga rápida y optimizada
-- **Accesibilidad**: Cumple con estándares WCAG 2.1
-- **SEO Optimizado**: Meta tags y estructura semántica
-- **Modular**: Código organizado en componentes reutilizables
-- **Moderno**: Utiliza las últimas tecnologías web
+- **Diseño Responsivo**: Optimizado para todos los dispositivos
+- **Performance**: Imágenes optimizadas, code splitting, lazy loading
+- **Accesibilidad**: Cumple estándares WCAG 2.1
+- **SEO**: Meta tags optimizados, estructura semántica
+- **Calidad de Código**: ESLint, Prettier, Husky pre-commit hooks
 
-## 🚀 Tecnologías Utilizadas
+## 🛠️ Tecnologías
 
-- **HTML5**: Estructura semántica
-- **CSS3**: Variables CSS, Grid, Flexbox, Animaciones
-- **JavaScript ES6+**: Módulos, Clases, Async/Await
-- **Vite**: Build tool moderno
-- **ESLint**: Linting de código
-- **Prettier**: Formateo de código
+- **Build Tool**: Vite 5.x
+- **Lenguaje**: Vanilla JavaScript (ES2022)
+- **Estilos**: CSS3 con PostCSS
+- **Optimización**: Sharp para imágenes, esbuild para minificación
+- **Calidad**: ESLint (Airbnb), Prettier, Husky
+
+## 📦 Instalación
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/grupo-antoni/landing-page.git
+cd landing-page
+
+# Instalar dependencias
+npm install
+
+# Configurar Git hooks
+npm run prepare
+```
+
+## 🚀 Scripts de Desarrollo
+
+```bash
+# Desarrollo
+npm run dev          # Servidor de desarrollo (localhost:3001)
+
+# Calidad de código
+npm run lint         # Verificar código con ESLint
+npm run lint:fix     # Corregir errores automáticamente
+npm run format       # Formatear código con Prettier
+npm run format:check # Verificar formato
+npm run quality      # Ejecutar lint + format check
+npm run quality:fix  # Ejecutar lint:fix + format
+
+# Build y análisis
+npm run build        # Build de producción
+npm run analyze      # Análisis del bundle con visualizer
+npm run preview      # Preview del build
+npm run serve        # Servir build localmente
+
+# Optimización
+npm run optimize:images # Optimizar imágenes con imagemin
+```
 
 ## 📁 Estructura del Proyecto
 
 ```
-Web app/
-├── assets/
-│   ├── images/
-│   │   ├── hero/           # Imágenes de la sección hero
-│   │   ├── projects/       # Imágenes de proyectos
-│   │   ├── team/           # Fotos del equipo
-│   │   ├── about/          # Imágenes de la sección about
-│   │   └── contact/        # Imágenes de contacto
-│   ├── icons/              # Iconos SVG
-│   └── fonts/              # Fuentes personalizadas
-├── css/
-│   ├── components/         # Estilos de componentes
-│   │   ├── header.css
-│   │   ├── hero.css
-│   │   ├── projects.css
-│   │   ├── team.css
-│   │   └── ...
-│   ├── utils/              # Utilidades CSS
-│   │   ├── reset.css
-│   │   ├── typography.css
-│   │   └── responsive.css
-│   └── main.css            # Archivo principal de estilos
-├── js/
-│   ├── components/         # Componentes JavaScript
-│   │   ├── navigation.js
-│   │   ├── hero.js
-│   │   ├── projects.js
-│   │   └── ...
-│   ├── utils/              # Utilidades JavaScript
-│   │   ├── scroll-animations.js
-│   │   └── performance.js
-│   └── main.js             # Archivo principal de JavaScript
-├── sections/               # Secciones HTML modulares
-├── index.html              # Página principal
-├── package.json            # Dependencias y scripts
-├── vite.config.js          # Configuración de Vite
-├── .eslintrc.js            # Configuración de ESLint
-├── .prettierrc             # Configuración de Prettier
-└── README.md               # Este archivo
+├── assets/           # Assets estáticos (iconos, imágenes originales)
+├── css/             # Estilos CSS organizados por componentes
+│   ├── components/  # Estilos de componentes específicos
+│   ├── utils/       # Utilidades CSS (reset, responsive, typography)
+│   ├── main.css     # Estilos principales
+│   └── styles.css   # Estilos globales
+├── img/             # Imágenes optimizadas
+│   ├── Team/        # Fotos del equipo (optimizadas)
+│   └── optimized/   # Imágenes procesadas
+├── js/              # JavaScript modular
+│   ├── components/  # Componentes de la aplicación
+│   ├── utils/       # Utilidades (analytics, performance, logger)
+│   └── main.js      # Punto de entrada principal
+├── scripts/         # Scripts de automatización
+├── dist/            # Build de producción
+└── index.html       # Página principal
 ```
 
-## 🛠️ Instalación y Configuración
+## 🎯 Optimizaciones Implementadas
 
-### Prerrequisitos
+### **Performance**
+- **Code Splitting**: Chunks separados por funcionalidad
+- **Image Optimization**: Reducción del 99.9% en tamaño de imágenes
+- **Lazy Loading**: Carga diferida de imágenes y componentes
+- **Minificación**: esbuild para JavaScript, cssnano para CSS
+- **Tree Shaking**: Eliminación de código no utilizado
 
-- Node.js (versión 16 o superior)
-- npm (versión 8 o superior)
+### **SEO**
+- **Meta Tags**: Open Graph, Twitter Cards, keywords
+- **Estructura Semántica**: HTML5 semántico
+- **Canonical URLs**: URLs canónicas
+- **Sitemap**: Estructura optimizada para crawlers
 
-### Instalación
+### **Accesibilidad**
+- **ARIA Labels**: Etiquetas descriptivas
+- **Keyboard Navigation**: Navegación por teclado
+- **Screen Readers**: Compatibilidad con lectores de pantalla
+- **Contrast**: Contraste adecuado en colores
+- **Focus Management**: Gestión del foco visible
 
-1. **Clonar el repositorio**
-   ```bash
-   git clone [url-del-repositorio]
-   cd "Web app"
-   ```
+## 🔧 Configuración de Calidad
 
-2. **Instalar dependencias**
-   ```bash
-   npm install
-   ```
+### **ESLint**
+- Configuración Airbnb Base
+- Reglas personalizadas para el proyecto
+- Integración con Prettier
+- Pre-commit hooks con Husky
 
-3. **Ejecutar en modo desarrollo**
-   ```bash
-   npm run dev
-   ```
+### **Prettier**
+- Formato consistente
+- Integración con ESLint
+- Configuración para HTML, CSS, JS
 
-4. **Abrir en el navegador**
-   ```
-   http://localhost:3000
-   ```
+### **Husky**
+- Pre-commit hooks
+- Lint-staged para archivos modificados
+- Prevención de commits con errores
 
-## 📜 Scripts Disponibles
+## 📊 Análisis de Bundle
 
-| Script | Descripción |
-|--------|-------------|
-| `npm run dev` | Inicia el servidor de desarrollo |
-| `npm run build` | Construye el proyecto para producción |
-| `npm run preview` | Previsualiza la build de producción |
-| `npm run lint` | Ejecuta ESLint para verificar el código |
-| `npm run lint:fix` | Ejecuta ESLint y corrige errores automáticamente |
-| `npm run format` | Formatea el código con Prettier |
-| `npm run format:check` | Verifica el formato del código |
-| `npm run optimize:images` | Optimiza las imágenes |
-| `npm run serve` | Sirve la build de producción |
-| `npm run deploy` | Construye y sirve el proyecto |
-
-## 🎨 Personalización
-
-### Colores
-
-Los colores se definen en variables CSS en `css/main.css`:
-
-```css
-:root {
-  --color-primary: #4A90E2;
-  --color-primary-dark: #357ABD;
-  --bg-primary: #0a0a0a;
-  --text-primary: #ffffff;
-  /* ... más variables */
-}
+```bash
+npm run analyze
 ```
 
-### Tipografía
+Genera un reporte visual en `dist/bundle-analysis.html` con:
+- Tamaño de chunks
+- Dependencias
+- Análisis de duplicación
+- Métricas de compresión
 
-La tipografía se configura en `css/utils/typography.css`:
+## 🚀 Deployment
 
-```css
-:root {
-  --font-family: 'Inter', sans-serif;
-  --font-size-base: 1rem;
-  /* ... más variables de tipografía */
-}
-```
-
-### Imágenes
-
-1. **Hero Section**: Coloca las imágenes en `assets/images/hero/`
-2. **Proyectos**: Coloca las imágenes en `assets/images/projects/`
-3. **Equipo**: Coloca las fotos en `assets/images/team/`
-4. **About**: Coloca las imágenes en `assets/images/about/`
-5. **Contacto**: Coloca las imágenes en `assets/images/contact/`
-
-### Contenido
-
-Edita el contenido directamente en `index.html` o en los archivos de secciones individuales.
-
-## 📱 Responsive Design
-
-El diseño es completamente responsive con breakpoints:
-
-- **Mobile**: < 576px
-- **Tablet**: 576px - 991px
-- **Desktop**: > 992px
-
-## ♿ Accesibilidad
-
-- Navegación por teclado
-- Lectores de pantalla
-- Contraste de colores
-- Texto alternativo en imágenes
-- Enlaces de salto
-- Regiones ARIA
-
-## 🚀 Despliegue
-
-### Build para Producción
-
+### **Build de Producción**
 ```bash
 npm run build
 ```
 
-Los archivos optimizados se generan en la carpeta `dist/`.
+### **Optimizaciones Aplicadas**
+- Sourcemaps deshabilitados en producción
+- Console logs eliminados
+- Imágenes optimizadas
+- CSS y JS minificados
+- Assets con hash para cache busting
 
-### Despliegue en Servidor
-
-1. Sube el contenido de `dist/` a tu servidor web
-2. Configura el servidor para servir `index.html` como página principal
-3. Asegúrate de que las rutas de assets sean correctas
-
-## 🔧 Configuración Avanzada
-
-### Variables de Entorno
-
-Crea un archivo `.env` para configuraciones específicas:
-
-```env
-VITE_API_URL=https://api.grupoantoni.com
-VITE_ANALYTICS_ID=GA-XXXXXXXXX
+### **Estructura de Build**
+```
+dist/
+├── css/           # CSS minificado con hash
+├── js/            # JavaScript con code splitting
+├── img/           # Imágenes optimizadas
+├── assets/        # Assets estáticos
+└── index.html     # HTML optimizado
 ```
 
-### Optimización de Imágenes
+## 🔍 Monitoreo y Analytics
 
-```bash
-npm run optimize:images
-```
+- **Google Analytics**: Tracking de eventos
+- **Performance Monitoring**: Core Web Vitals
+- **Error Tracking**: Captura de errores JavaScript
+- **User Interactions**: Tracking de interacciones
 
-### Linting y Formateo
+## 📱 Responsive Design
 
-```bash
-# Verificar código
-npm run lint
+- **Mobile First**: Diseño móvil primero
+- **Breakpoints**: 480px, 768px, 1024px, 1200px
+- **Touch Friendly**: Elementos táctiles optimizados
+- **Performance**: Optimizado para conexiones lentas
 
-# Corregir automáticamente
-npm run lint:fix
+## 🎨 Sistema de Diseño
 
-# Formatear código
-npm run format
-```
+### **Colores**
+- Primary: #4F8CE3 (Azul corporativo)
+- Secondary: #1a1a1a (Negro)
+- Accent: #25d366 (Verde WhatsApp)
 
-## 📊 Performance
+### **Tipografía**
+- Headings: Georgia, serif
+- Body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
+- Sizes: Escala modular responsive
 
-- **Lazy Loading**: Imágenes cargadas bajo demanda
-- **Code Splitting**: JavaScript dividido en chunks
-- **Minificación**: CSS y JS optimizados
-- **Compresión**: Imágenes optimizadas
-- **Caching**: Headers de cache configurados
-
-## 🐛 Solución de Problemas
-
-### Problemas Comunes
-
-1. **Error de módulos ES6**
-   - Asegúrate de usar `type="module"` en el script tag
-   - Verifica que estés usando un servidor local
-
-2. **Imágenes no cargan**
-   - Verifica las rutas en `assets/images/`
-   - Asegúrate de que los archivos existan
-
-3. **Estilos no se aplican**
-   - Verifica que `css/main.css` esté importado
-   - Revisa la consola del navegador por errores
-
-### Debug
-
-```bash
-# Modo debug
-npm run dev -- --debug
-
-# Ver logs detallados
-DEBUG=* npm run dev
-```
+### **Espaciado**
+- Base: 1rem
+- Scale: 0.5rem, 1rem, 1.5rem, 2rem, 3rem, 4rem
 
 ## 🤝 Contribución
 
@@ -254,25 +191,24 @@ DEBUG=* npm run dev
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
+### **Estándares de Código**
+- Seguir las reglas de ESLint
+- Formatear con Prettier
+- Commits con Conventional Commits
+- Tests para nuevas funcionalidades
+
 ## 📄 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
 
 ## 📞 Contacto
 
 **Grupo Antoni**
+- Website: [grupoantoni.com](https://grupoantoni.com)
 - Email: info@grupoantoni.com
-- Teléfono: +1 (829) 293-0121
-- Dirección: Calle San Juan Bautista de la Salle 35, N°23, Edificio El Buen Pastor, Suite 201, Ensanche Naco, Santo Domingo, República Dominicana
-
-## 🙏 Agradecimientos
-
-- [Inter Font](https://fonts.google.com/specimen/Inter) - Tipografía
-- [Font Awesome](https://fontawesome.com/) - Iconos
-- [Vite](https://vitejs.dev/) - Build tool
-- [AOS](https://michalsnik.github.io/aos/) - Animaciones
-- [Swiper](https://swiperjs.com/) - Carousel
+- Teléfono: +1 (829) 893-0121
+- Dirección: Calle San Juan Bautista de La Salle St. #125, Edificio El Buen Pastor Suit 201, Ensanche Renacimiento, Santo Domingo, República Dominicana
 
 ---
 
-**Desarrollado con ❤️ para Grupo Antoni**
+*Desarrollado con ❤️ para Grupo Antoni*
