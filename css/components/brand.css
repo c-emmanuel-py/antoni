@@ -166,32 +166,110 @@
 @media (max-width: 767.98px) {
   .brand {
     padding: var(--spacing-xxl) 0;
+    height: 100vh;
   }
 
   .brand-carousel {
-    gap: var(--spacing-lg);
-    padding: 0 var(--spacing-md);
+    gap: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: none;
+  }
+
+  .brand-carousel-container {
+    overflow: visible;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
   }
 
   .brand-logo {
-    width: 200px;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
   }
 
   .brand-title {
     font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-lg);
   }
 
   .brand-separator {
     width: 120px;
+    margin-bottom: var(--spacing-lg);
   }
 
   .brand-logo .logo-img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .logo-main {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .logo-sub {
+    font-size: var(--font-size-sm);
+    text-align: center;
+  }
+
+  /* Hide other logos in mobile - show only one at a time */
+  .brand-logo:not(:first-child) {
+    display: none;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 575.98px) {
+  .brand {
+    height: 100vh;
+    padding: var(--spacing-xl) 0;
+  }
+
+  .brand-carousel-container {
+    padding: 0 1rem;
+  }
+
+  .brand-logo {
+    width: 100%;
+    height: 350px;
+    padding: var(--spacing-lg);
+  }
+
+  .brand-title {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .brand-separator {
     width: 100px;
-    height: 100px;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .brand-logo .logo-img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: var(--spacing-md);
   }
 
   .logo-main {
     font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-xs);
   }
 
   .logo-sub {
